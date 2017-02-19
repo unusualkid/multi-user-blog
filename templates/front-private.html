@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in posts %}
+<div class="post-comment">
+    {{ post.render() | safe }}
+
+    <a href="/blog/{{post.key().id()}}/comment">Comment</a>
+
+    {% if user_name == post.author.name %}
+    <a href="/blog/{{post.key().id()}}/edit">Edit</a>
+    <a href="/blog/{{post.key().id()}}/delete">Delete</a>
+
+    {% else %}
+    {%if user_name not in post.likes %}
+    <a href="/blog/{{post.key().id()}}/like">Like</a>
+    {% else %}
+    <a href="/blog/{{post.key().id()}}/like">Unlike</a>
+
+    {% endif %}
+    {% endif %}
+
+    <div>
+        {{post.likes|length}} Likes
+    </div>
+    <div>
+        <div class="comments">
+            <div class="comment-heading">Comments</div>
+            {% for comment in post.comments %}
+            <div class="comment">
+                <div class="comment-date">
+                    {{comment.created.strftime("%b %d, %Y")}}
+                </div>
+                <div class="comment-content">
+                    {{comment.content}}
+                </div>
+                {% if user_name == comment.author.name %}
+                <a href="/blog/{{comment.key().id()}}/comment_edit">
+                    Edit
+                </a>
+                <a href="/blog/{{comment.key().id()}}/comment_delete">
+                    Delete
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endfor %}
+
+{% endblock %}
+

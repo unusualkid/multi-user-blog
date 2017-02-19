@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in posts %}
+{{ post.render() | safe }}
+{% block front_private %}
+
+{% endblock front_private %}
+
+<br>
+<br>
+<br>
+
+{% endfor %}
+
+{% endblock %}

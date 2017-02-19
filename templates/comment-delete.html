@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>
+    Delete coment
+</h2>
+
+<form method="post">
+    <label>
+        <div>
+            Are you sure you want to delete the comment?
+            <br>
+            {{comment.content}}
+        </div>
+    </label>
+    <br>
+    <button type="submit">Delete</button>
+    <a href="/blog">Cancel</a>
+</form>
+
+{% endblock %}

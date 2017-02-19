@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>
+    Like post
+</h2>
+<form method="post">
+    <label>
+        <div>
+            Are you sure you want to like the post "{{post.subject}}"?
+        </div>
+    </label>
+    <br>
+    <button type="submit">Like</button>
+    <a href="/blog/{{post.key().id()}}">Cancel</a>
+</form>
+
+{% endblock %}
